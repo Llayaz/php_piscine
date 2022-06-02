@@ -1,0 +1,4 @@
+DESCRIBE table -> shows schema
+CREATE TABLE destination_db.my_table SELECT * FROM source_db.my_table; -> copy table from 1 db to another and create the table for it, copy loses keys
+ALTER TABLE destination_db.my_table ADD PRIMARY KEY (`id`); -> add primary key
+UPDATE film SET release_date = '2222-12-22' WHERE CAST(release_date AS CHAR(10)) = '0000-00-00'; -> 

@@ -1,0 +1,159 @@
+body {
+	background-color: #505050;
+}
+.test {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	top: -8px;
+	left: 0;
+	z-index: 10;
+	opacity: 0.5;
+}
+.test img {
+	margin-top: -80px;
+}
+.container {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+.container_2 {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+.header {
+	position: relative;
+	width: 1400px;
+	height: 115px;
+	padding: 10px;
+	background-color: #909090;
+	border-style: none;
+	border-radius: 10px;
+	box-shadow: 10px 10px 5px;
+	display: flex;
+	justify-content: space-between;
+}
+.header div.buttons {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+.header div.buttons img {
+	width: 20px;
+}
+.header img.magni {
+	position: absolute;
+	top: 10px;
+	right: 30px;
+}
+.left_menu {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 70px;
+	padding: 15px 39px 13px 31px;
+	background-color: #909090;
+	border-radius: 10px;
+	box-shadow: 10px 10px 5px;
+}
+.left_menu img {
+	margin-bottom: 10px;
+}
+.left_menu img.selected {
+	border: 5px solid red;
+	border-radius: 5px;
+}
+.middle_pic {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	margin: 0px 30px 0px 30px;
+	padding: 10px 10px 10px 10px;
+	width: 1000px;
+	background-color: #909090;
+	border-radius: 10px;
+	box-shadow: 10px 10px 5px;
+}
+.middle_pic a.ikea {
+	position: absolute;
+	display: block;
+	width: 13%;
+	height: 38%;
+	bottom: 5%;
+	left: 33%;
+}
+.middle_pic a.apple {
+	position: absolute;
+	display: block;
+	width: 13%;
+	height: 18%;
+	bottom: 29.5%;
+	right: 25%;
+	transform: rotate(4deg);
+}
+.right_menu {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	width: 140px;
+	height: 392px;
+	padding: 15px 0px 15px 0px;
+	background-color: #909090;
+	border-radius: 10px;
+	box-shadow: 10px 10px 5px;
+}
+.right_menu img {
+	padding-bottom: 10px;
+}
+.brick {
+	background-image: url("./resources/brick.jpg");
+	background-repeat: repeat;
+	width: 120px;
+	height: 70px;
+}
+.container_2 div.chatbox {
+	position: absolute;
+	background-color: #88FF89;
+	border-radius: 10px;
+	box-shadow: 10px 10px 5px;
+	width: 520px;
+	height: 170px;
+	top: 510px;
+	right: 747px;
+}
+p {
+	font-family: Arial, sans-serif;
+	font-size: 17px;
+	-webkit-font-smoothing: antialiased;
+	letter-spacing: 0.5px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	margin-top: 7px;
+}
+.container_2 div.chatbox span.italic {
+	font-style: italic;
+}
+.container_2 div.chatbox span.big {
+	font-size: 36px;
+	letter-spacing: 1.2px;
+	font-family: Times New Roman, serif;
+}
+.container_2 div.chatbox span.shadow {
+	text-shadow: 5px 5px 5px #ff0000;
+}
+.container_2 div.chatbox form {
+	padding-left: 12px;
+}
+.container_2 div.chatbox input[type="text"] {
+	border-style: inset;
+	border-color: #eee;
+	width: 375px;
+}
+.container_2 div.chatbox input[type="submit"] {
+	margin-left: 10px;
+	font-size: 14px;
+}
