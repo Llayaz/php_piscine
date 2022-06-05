@@ -1,0 +1,33 @@
+<- Vertex ----------------------------------------------------------------------
+The Vertex class handles vertex coordinates.
+
+An instance can be constructed with three mandatory paramteres (x, y, z):
+new Vertex ( array( 'x' => 0.0, 'y' => 1.10, 'z' => 0.50 ) );
+
+Optinally the 'w' coordinate and a 'color' class construct can also be added to 
+the parameters:
+new Vertex ( array( 'x' => 0.0, 'y' => 1.10, 'z' => 0.50, 'w' => 0.2, 
+'color' => $magenta) );
+
+If 'w' or 'color' parameters are not specified, their default value is 1.0 and 
+white (0xFFFFFF) respectively. 
+
+For handling the printing of the construct and destruct output the static
+boolean attribute 'verbose' can be used. 
+Default value of 'verbose' is false which provides no output.
+
+The class provides get and set methods for returning and setting the values of 
+the private attributes:
+
+Vertex	getX();
+Vertex	getY();
+Vertex	getZ();
+Vertex	getW();
+Vertex	getColor();
+
+Vertex	setX($new_x);
+Vertex	setY($new_y);
+Vertex	setZ($new_z);
+Vertex	setW($new_w);
+Vertex	setColor($new_color);
+---------------------------------------------------------------------- Vertex ->

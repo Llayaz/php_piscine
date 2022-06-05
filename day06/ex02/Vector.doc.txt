@@ -1,0 +1,57 @@
+<- Vector ----------------------------------------------------------------------
+The Vector class handles vectors.
+
+An instance can be constructed from an array of a destination Vertex object 
+and optionally from an additional origin Vertex Object. 
+
+new Vector = ( array ( 'dest' => $VertexDest, 'orig' => $VertexOrigin ) );
+
+If no origin Vertex object is specified default settings are:
+x = 0, y = 0, z = 0, w = 1
+
+The class has four attributes:
+'x', 'y', 'z' magnitudes and 'w' coordinate
+The default value of 'w' is 0.0
+
+For handling the printing of the construct and destruct output the static
+boolean attribute 'verbose' can be used. 
+Default value of 'verbose' is false which provides no output.
+
+The class provides the following methods:
+
+float	magnitude();
+Returns the length of the vector as float.
+
+Vector	normalize();
+Returns the normalized vector or a clone of the vector if already normalized.
+
+Vector	add( Vector $rhs );
+Returns the sum vector of both vectors.
+
+Vector	sub( Vector $rhs );
+Returns the difference vector of both vectors.
+
+Vector	opposite();
+Returns the opposite vector.
+
+Vector	scalarProduct( $k );
+Returns the multiplication of the vector with a scalar value ($k).
+
+float	dotProduct( Vector $rhs );
+Returns the scalar multiplication of both vectors, aka the dot product.
+
+float	cos( Vector $rhs);
+Returns the cosine value of the angle between the two vectors.
+
+Vector	crossProduct ( Vector $rhs );
+Returns the cross multiplication of both vectors, using right-hand mark.
+
+read_x();
+read_y();
+read_z();
+read_w();
+For returning the values of 'x', 'y', 'z' and 'w' respectively.
+
+Vector	doc();
+For retrieving the contents of this doc file in a string.
+---------------------------------------------------------------------- Vector ->

@@ -10,11 +10,10 @@ Class Color {
 
 	static function doc()
 	{
-		if (file_exists('./Color.doc.txt'))
-			return (file_get_contents('./Color.doc.txt')) . PHP_EOL ;
+		echo (file_get_contents('./Color.doc.txt')) . PHP_EOL ;
 	}
 
-	public function __construct(array $rgb_array)
+	public function __construct($rgb_array)
 	{
 //		if (array_key_exists('rgb', $rgb_array))
 		if (isset($rgb_array['rgb']))
