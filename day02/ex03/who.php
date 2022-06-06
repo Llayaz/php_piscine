@@ -1,12 +1,21 @@
 #!/usr/local/bin/php
-<?php 
+<?php
+	date_default_timezone_set('Europe/Helsinki');
 	$fp = fopen("/var/run/utmpx", "rb");
-	if (!$fp)
-		return ;
-	while (!feof($fp))
-		var_dump(fread($fp));
-//	$data = file_get_contents("/var/run/utmpx");
-//	var_dump($data);
-//	preg_match_all('/(.*)/', $fp, $matches);
-//	var_dump($matches);
+	if ($fp)
+	{
+		while ($file = fread($fp, 628))
+		{
+// 'a' code retains trailing null bytes
+		 $who = unpack("a256login/a4tid/a32tname/ipid/ilogintype/itstamp/", $file);
+			if ($who['logintype'] == 7)
+			{
+				echo trim($who['login']) . str_repeat(' ', 2);
+				echo trim($who['tname']) . str_repeat(' ', 2);
+				echo date("M ", $who['tstamp']);
+				echo str_pad(date("j ", $who['tstamp']), 3, " ", STR_PAD_LEFT);
+				echo date("H:i", $who['tstamp']) . " \n";
+			}
+		}
+	}
  ?>
