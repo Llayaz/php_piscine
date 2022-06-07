@@ -11,16 +11,20 @@
 			if (!file_exists($dir))
 				mkdir("$dir");
 			$page = file_get_contents($url);
-			preg_match_all('/<img.*?src=[\'"](.*?)[\'"].*?>/i', $page, $matches);
-			foreach ($matches[1] as $pic)
+			if ($page)
 			{
-				$path = $dir . "/" . basename($pic);
-				$file = fopen($path, 'w+');
-				$host = curl_init($pic);
-				curl_setopt($host, CURLOPT_FILE, $file);
-				curl_exec($host);
-				curl_close($host);
-				fclose($file);
+				preg_match_all('/<img.*?src=[\'"](.*?)[\'"].*?>/i', $page, $matches);
+				foreach ($matches[1] as $pic)
+				{
+					$pic = preg_replace('/(\?.*)/', '', $pic);
+					$path = $dir . "/" . basename($pic);
+					$file = fopen($path, 'w+');
+					$host = curl_init($pic);
+					curl_setopt($host, CURLOPT_FILE, $file);
+					curl_exec($host);
+					curl_close($host);
+					fclose($file);
+				}
 			}
 		}
 	}
