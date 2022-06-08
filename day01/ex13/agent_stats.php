@@ -1,6 +1,5 @@
 #!/usr/bin/php
 <?php
-
 	$f = fopen( 'php://stdin', 'r' );
 	$db = array();
 	if ($f)
@@ -11,7 +10,6 @@
 		{
 			$i = 1;
 			$num = -1;
-			$mouli = 0;
 			$data_av = array();
 			$name = array();
 			$name_sorted = array();
@@ -26,8 +24,6 @@
 					$data_av[] = $db[$i][1];
 					$num++;
 				}
-				if($db[$i][1] != '' && $db[$i][2] == "moulinette")
-					$mouli += $db[$i][1];
 				$i++;
 			}
 			$name = array_unique($name);
@@ -46,50 +42,61 @@
 				$i = 0;
 				while ($name_sorted[$i])
 				{
-					echo $name_sorted[$i];
 					$j = 1;
 					$num = 0;
 					$avg = 0;
 					while ($db[$j])
 					{
-						if ($name_sorted[$i] == $db[$j][0] && $db[$j][1] != '')
+						if ($name_sorted[$i] == $db[$j][0] && $db[$j][1] != '' && $db[$j][2] != 'moulinette')
 						{
-							echo $db[$j][1];
 							$avg += intval($db[$j][1]);
 							$num++;
-	//						echo $db[$j][1] . PHP_EOL;
-	//						echo $avg .  "\n";
 						}
-	//						$user_avg[$name_sorted[i]] += intval($db[$j][1]);
 						$j++;
-	//					echo $db[$j][1] . PHP_EOL;
-						}
-	//					echo $avg .  "\n";
-	//					echo $user_avg[$name_sorted[i]] . "\n";
-	//					$user_avg[$name_sorted[$i]] = $user_avg[$name_sorted[$i]] / $j;
-						echo "\n" . $avg . " " . $num . "\n"; 
-						$res = $avg / $num;
-						echo ($name_sorted[$i] .  " : " . $res . PHP_EOL);
-						$i++;
-				}
-			/*	foreach($name_sorted as $value)
-				{
-					$user_avg[$value] = 0;
-					while ($db[$i])
-					{
-						if ($value == $db[$i][2] && $db[$i][1] != '')
-						$user_avg[$value] += $db[$i][1];
-						$num++;
-						$i++;
 					}
-					$res = $user_avg[$value] / $num;
-					echo "$value : $res\n";
-				}*/
-
+					if ($num != 0)
+					{
+						$res = $avg / $num;
+						echo ($name_sorted[$i] .  ":" . $res . PHP_EOL);
+					}
+					$i++;
+				}
 			}
 			if ($argv[1] == 'moulinette_variance')
 			{
-				echo "test3";
+				$user_avg = array();
+				$i = 0;
+				while ($name_sorted[$i])
+				{
+					$j = 1;
+					$num = 0;
+					$nummou = 0;
+					$avg = 0;
+					$mou = 0;
+					$mou_avg = 0;
+					while ($db[$j])
+					{
+						if ($name_sorted[$i] == $db[$j][0] && $db[$j][1] != '' && $db[$j][2] != 'moulinette')
+						{
+							$avg += intval($db[$j][1]);
+							$num++;
+						}
+						if ($name_sorted[$i] == $db[$j][0] && $db[$j][1] != '' && $db[$j][2] == 'moulinette')
+						{
+							$mou += intval($db[$j][1]);
+							$nummou++;
+						}
+						$j++;
+					}
+					if ($num != 0)
+					{
+						if ($numm != 0)
+							$mou_avg = $mou / $nummou;
+						$res = $avg / $num;
+						echo ($name_sorted[$i] .  ":" . ($res - $mou) . PHP_EOL);
+					}
+					$i++;
+				}
 			}
 		}
 		fclose($f);
