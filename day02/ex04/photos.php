@@ -21,6 +21,8 @@
 					$file = fopen($path, 'w+');
 					$host = curl_init($pic);
 					curl_setopt($host, CURLOPT_FILE, $file);
+					curl_setopt($host, CURLOPT_TIMEOUT, $file);
+					curl_setopt($host, CURLOPT_CONNECTTIMEOUT, $file);
 					curl_exec($host);
 					curl_close($host);
 					fclose($file);
