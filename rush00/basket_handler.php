@@ -39,6 +39,18 @@
 				}
 			}
 		}
+		if($_GET['action'] == "update"){
+			$amount = max(0, min(100, intval($_GET['amount'])));
+			foreach($_SESSION['basket'] as $key => $basket_item){
+				if($basket_item['prod_id'] == $prod_id){
+					if($amount)
+						$_SESSION['basket'][$key]['amount'] = $amount;
+					else
+						unset($_SESSION['basket'][$key]);
+				}
+			}
+			
+		}
 
 		if($_GET['action'] == "del"){
 			foreach($_SESSION['basket'] as $key => $basket_item){
