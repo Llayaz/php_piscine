@@ -27,13 +27,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `orders`
 --
 
-CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `total` float NOT NULL,
   `paid` tinyint(1) NOT NULL,
   `active` tinyint(1) NOT NULL,
-  `created_date` datetime NOT NULL
+  `created_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -42,14 +43,15 @@ CREATE TABLE `orders` (
 -- Table structure for table `order_items`
 --
 
-CREATE TABLE `order_items` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `order_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `price` float NOT NULL,
   `amount` int(11) NOT NULL,
-  `total` float NOT NULL
+  `total` float NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -58,21 +60,22 @@ CREATE TABLE `order_items` (
 -- Table structure for table `products`
 --
 
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `feat_picture` varchar(256) DEFAULT NULL,
   `price` float NOT NULL,
   `colors` enum('white','black','red','green','yellow') NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `active` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `feat_picture`, `price`, `colors`, `created_at`, `active`) VALUES
+INSERT IGNORE INTO `products` (`id`, `name`, `feat_picture`, `price`, `colors`, `created_at`, `active`) VALUES
 (1, 'Boreal design', '', 1699, 'white', '2022-06-11 16:18:34', 1),
 (2, 'Valley Etain', '', 4200, 'yellow', '2022-06-11 16:31:24', 1),
 (3, 'Norse Freyja', '', 1695, 'black', '2022-06-11 16:31:24', 1),
@@ -86,17 +89,18 @@ INSERT INTO `products` (`id`, `name`, `feat_picture`, `price`, `colors`, `create
 -- Table structure for table `product_categories`
 --
 
-CREATE TABLE `product_categories` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `product_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
-  `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `active` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product_categories`
 --
 
-INSERT INTO `product_categories` (`id`, `name`, `active`) VALUES
+INSERT IGNORE INTO `product_categories` (`id`, `name`, `active`) VALUES
 (1, 'Single', 1),
 (2, 'Double', 1),
 (3, 'Sea', 1),
@@ -108,18 +112,19 @@ INSERT INTO `product_categories` (`id`, `name`, `active`) VALUES
 -- Table structure for table `prod_cat_link`
 --
 
-CREATE TABLE `prod_cat_link` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `prod_cat_link` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `prod_id` int(11) NOT NULL,
   `cat_id` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `active` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `prod_cat_link`
 --
 
-INSERT INTO `prod_cat_link` (`id`, `prod_id`, `cat_id`, `active`) VALUES
+INSERT IGNORE INTO `prod_cat_link` (`id`, `prod_id`, `cat_id`, `active`) VALUES
 (1, 1, 2, 1),
 (2, 1, 3, 1),
 (3, 2, 1, 1),
@@ -132,96 +137,19 @@ INSERT INTO `prod_cat_link` (`id`, `prod_id`, `cat_id`, `active`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(32) NOT NULL,
   `passwd` varchar(256) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `admin` tinyint(1) DEFAULT 0,
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `admin` tinyint(1) DEFAULT '0',
   `last_login` datetime DEFAULT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT 1
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `order_items`
---
-ALTER TABLE `order_items`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `product_categories`
---
-ALTER TABLE `product_categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `prod_cat_link`
---
-ALTER TABLE `prod_cat_link`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `login` (`login`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_items`
---
-ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `product_categories`
---
-ALTER TABLE `product_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `prod_cat_link`
---
-ALTER TABLE `prod_cat_link`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
