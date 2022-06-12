@@ -12,6 +12,8 @@
 		<title>online shop</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
+
+	<body>
 	<header>
 		<div class="leftBar">
 			<div class="company">
@@ -56,8 +58,8 @@
 			</div>
 		</div>
 	</header>
-	<body>
 		<div class="cartPage">
+			<h2></h2>
 				<?php
 
 				if($_SESSION['basket']){
@@ -82,25 +84,32 @@
 							<a href=""></a>
 							<td><?php echo $basket_item['name'] ?></td>
 							<td>€<?php echo $basket_item['price'] ?></td>
-							<td><?php echo $basket_item['amount'] ?></td>
+							<td>
+								<form action="" method="GET">
+									<input type="number" name="amount" value="<?php echo $basket_item['amount']; ?>">
+									<input type="submit" name="action" value="update">
+									<input type="hidden" name="prod_id" value="<?php echo $basket_item['prod_id']; ?>">
+								</form>
+							</td>
+							</form>
 							<td>€<?php echo $basket_item['amount'] * $basket_item['price'] ?></td>
 							<td><a href="?action=del&prod_id=<?php echo $basket_item['prod_id']; ?>">REMOVE</a></td>
 						</tr>
 
 					<?php } ?>
 
-					<tr>
-						<td class="table_total" colspan="3">TOTAL</td>
-						<td>€<?php echo $total ?></td>
+					<tr class="table_total">
+						<td class="table_total" colspan="4">TOTAL</td>
+						<td class="table_total">€<?php echo $total ?></td>
 					</tr>
 					</tbody>
-
-				</ul>
-
+					
+				</table>
+				<input type="submit" value="OK">	
+				<input type="submit" value="Cancel">	
 				<?php }else{ ?>
 				The basket is empty
 				<?php } ?>
-
 
 		</div>
 	</body>
