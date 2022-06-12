@@ -42,17 +42,26 @@
 				GRANT CREATE USER, ALTER, SUPER, REPLICATION CLIENT, DELETE, CREATE TEMPORARY TABLES, SHOW DATABASES, INSERT, UPDATE, EVENT, ALTER ROUTINE,
 				GRANT OPTION, PROCESS, INDEX, SHUTDOWN, SHOW VIEW, REPLICATION SLAVE, REFERENCES, CREATE ROUTINE, DROP, FILE, SELECT, CREATE, EXECUTE,
 				CREATE VIEW, CREATE TABLESPACE, RELOAD, TRIGGER, LOCK TABLES ON . TO 'rush'@'localhost'; FLUSH PRIVILEGES;";*/
-		$init_user = "
+/*		$init_user = "
 		CREATE USER 'rush2'@'localhost' IDENTIFIED BY 'rush123';
 		UPDATE mysql.user SET max_questions = 0, max_updates = 0, max_connections = 0 WHERE User = 'rush2' AND Host = 'localhost';
 		GRANT CREATE USER, ALTER, SUPER, REPLICATION CLIENT, DELETE, CREATE TEMPORARY TABLES, SHOW DATABASES, INSERT, UPDATE, EVENT, ALTER ROUTINE, GRANT OPTION, PROCESS, INDEX, SHUTDOWN, SHOW VIEW, REPLICATION SLAVE, REFERENCES, CREATE ROUTINE, DROP, FILE, SELECT, CREATE, EXECUTE, CREATE VIEW, CREATE TABLESPACE, RELOAD, TRIGGER, LOCK TABLES ON . TO 'rush2'@'localhost';
 		FLUSH PRIVILEGES;
-	";
-	echo $init_user;
-		if (mysqli_query($conn, $init_user) == FALSE)
-			echo "oops";
-		else
-			echo "yeay";
+	";*/
+/*	$init_user = "CREATE USER IF NOT EXISTS 'rush2'@'localhost' IDENTIFIED BY 'rush123';
+		GRANT ALL ON * TO 'rush2'@'localhost';
+		FLUSH PRIVILEGES;";*/
+	$init_user = array();
+		$init_user[] = "CREATE USER IF NOT EXISTS 'rush4'@'localhost' IDENTIFIED BY 'rush123';";
+		$init_user[] = "GRANT ALL PRIVILEGES ON * . * TO 'rush4'@'localhost';";
+		$init_user[] = "FLUSH PRIVILEGES;";
+		foreach($init_user as $initrow){
+			if (mysqli_query($conn, $initrow) == FALSE)
+				echo "oops<br>";
+			else
+				echo "yeay<br>";
+		}
+		
 
 		echo "USER created\n";
 		echo "<hr>";
@@ -85,6 +94,6 @@
 
 		echo "<hr>";
 		echo "DB import successful";
-		mysqli_close($conn);
+//		mysqli_close($conn);
 	}
 ?>
