@@ -51,6 +51,20 @@
 			}
 		}
 	}
+	if($_GET['action'] == "update"){
+			
+			$amount = max(0, min( 100, intval($_GET['amount'])));
+
+			foreach($_SESSION['basket'] as $key => $basket_item){
+				//found and increase
+				if($basket_item['prod_id'] == $prod_id){
+					if($amount)
+						$_SESSION['basket'][$key]['amount'] = $amount; //set the amount if bigger than 0
+					else
+						unset($_SESSION['basket'][$key]); //remove from basket
+				}
+			}
+		}
 
 	$basket_count = count($_SESSION['basket']);
 
