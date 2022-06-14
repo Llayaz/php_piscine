@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon</title>
+	<style>
+		body {
+			display: flex;
+			justify-content: center;
+			margin-top: 10%;
+		}
+		.balloon {
+			border-radius: 100%;
+		}
+	</style>
+</head>
+<body>
+    <div class="balloon" id="balloon" onclick="grow_balloon(id)"  onmouseleave="shrink_balloon(id)" style="background-color : red; width : 200px; height : 200px;"></div>
+    <script>
+
+        function grow_balloon(id) {
+            const balloon = document.getElementById(id);
+            const current_color = balloon.style.backgroundColor;
+            const current_w = balloon.clientWidth;
+            const current_h = balloon.clientHeight;
+			balloon.style.width = (current_w + 10) + "px";
+			balloon.style.height = (current_h + 10) + "px";
+            if (current_color == 'red'){
+                balloon.style.backgroundColor = 'green';
+            }
+            else if (current_color == 'green')
+                balloon.style.backgroundColor = 'blue';
+            else
+                balloon.style.backgroundColor = 'red';
+			if (current_w > 420) {
+				balloon.style.width = 200 + "px";
+				balloon.style.height = 200 + "px";
+			}
+        }
+		function shrink_balloon(id) {
+			const balloon = document.getElementById(id);
+            const current_color = balloon.style.backgroundColor;
+            const current_w = balloon.clientWidth;
+			const current_h = balloon.clientHeight;
+			balloon.style.width = (current_w - 5) + "px";
+			balloon.style.height = (current_h - 5) + "px";
+			if (current_color == 'red'){
+                balloon.style.backgroundColor = 'blue';
+            }
+            else if (current_color == 'blue')
+                balloon.style.backgroundColor = 'green';
+            else
+                balloon.style.backgroundColor = 'red';
+			if (current_w < 200) {
+				balloon.style.width = 200 + "px";
+				balloon.style.height = 200 + "px";
+			}
+		}
+		
+        
+    </script>
+</body>
+</html>
