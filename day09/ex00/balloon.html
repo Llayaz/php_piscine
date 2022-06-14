@@ -25,8 +25,13 @@
 			const current_color = balloon.style.backgroundColor;
 			const current_w = balloon.clientWidth;
 			const current_h = balloon.clientHeight;
-			balloon.style.width = (current_w + 10) + "px";
-			balloon.style.height = (current_h + 10) + "px";
+			if (current_w < 411){
+				balloon.style.width = (current_w + 10) + "px";
+				balloon.style.height = (current_h + 10) + "px";
+			} else {
+				balloon.style.width = 200 + "px";
+				balloon.style.height = 200 + "px";
+			}
 			if (current_color == 'red'){
 				balloon.style.backgroundColor = 'green';
 			}
@@ -34,10 +39,6 @@
 				balloon.style.backgroundColor = 'blue';
 			else
 				balloon.style.backgroundColor = 'red';
-			if (current_w > 420) {
-				balloon.style.width = 200 + "px";
-				balloon.style.height = 200 + "px";
-			}
 		}
 
 		function shrink_balloon(id) {
