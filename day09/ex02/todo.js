@@ -1,28 +1,43 @@
-
 let todoItems = [];
 
-function addTodo(text) {
-		const newToDo = {
-			text,
-			id: Date.now(),
+function buildList()
+{
+	var arrayLen = todoItems.length;
+	var temp;
+	var parent = document.getElementById('ft_list');
+	document.getElementById('ft_list').innerHTML = '';
+	for (i = 0; i < arrayLen; i++)
+	{
+		temp = document.createElement('div');
+		temp.className = 'todoItem';
+		temp.id = i;
+		temp.onclick = function ()
+		{
+			for (i = 0; i < arrayLen; i++)
+			{
+				if(i == this.id)
+					todoItems.splice(i, 1);
+			}
+			
+			this.remove();
+			arrayLen = todoItems.length;
+			buildList();
 		};
-		todoItems.unshift(text);
-		console.log(todoItems);
+		temp.innerHTML = todoItems[i];
+		document.getElementById('ft_list').appendChild(temp);
 	}
+}
 
 document.querySelector('#new').addEventListener('click', function(evt)
 {
 
 	let text = prompt("Please enter your new to-do item:", "");
-	text = text.trim();
-	console.log(text);
 	if (text != "")
 	{
-		var newDiv = document.createElement('div');
-		newDiv.style.cssText = 'position:absolute;width:100%;height:100%;opacity:0.3;z-index:100;background:#000;';
+		text = text.trim();
+		todoItems.unshift(text);
 		var arrayLen = todoItems.length;
-		console.log(arrayLen);
-		addTodo(text);
-		
+		console.log(todoItems)
+		buildList()
 	}
 });
