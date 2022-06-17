@@ -60,8 +60,7 @@
 		<input type="submit" id="submit" value="Try me!">
 	</div>
 	<script type="text/javascript">
-
-		setTimeout(function() { alert("Please, use me..."); }, 30000);
+		setInterval(function() { alert("Please, use me..."); }, 30000);
 		document.querySelector('#submit').addEventListener('click', function(evt)
 		{
 			const num1 = document.querySelector('#left_num');
