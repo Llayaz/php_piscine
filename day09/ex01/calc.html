@@ -60,7 +60,10 @@
 		<input type="submit" id="submit" value="Try me!">
 	</div>
 	<script type="text/javascript">
-		document.querySelector('#submit').addEventListener('click', function(evt){
+
+		setTimeout(function() { alert("Please, use me..."); }, 30000);
+		document.querySelector('#submit').addEventListener('click', function(evt)
+		{
 			const num1 = document.querySelector('#left_num');
 			const op = document.querySelector('#operators');
 			const num2 = document.querySelector('#right_num');
@@ -73,34 +76,21 @@
 			else 
 			{
 				if (op.value == 'add')
-				{
 					result = parseInt(num1.value) + parseInt(num2.value);
-				}
 				else if (op.value == 'sub') 
-				{
 					result = parseInt(num1.value) - parseInt(num2.value);
-				}
 				else if (op.value == 'mult') 
-				{
 					result = parseInt(num1.value) * parseInt(num2.value);
-				}
 				else if (op.value == 'div' && num2.value != 0) 
-				{
 					result = parseInt(num1.value) / parseInt(num2.value);
-				}
 				else if (op.value == 'mod' && num2.value != 0) 
-				{
 					result = parseInt(num1.value) % parseInt(num2.value);
-				}
 				else
-				{
-					result = "It's over 9000";
-				}
+					result = "It's over 9000!";
 				console.log(result);
 				alert(result);
 			}
-
-	})
+		});
 
 	</script>
 </body>
