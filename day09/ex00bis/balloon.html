@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Balloon</title>
+	<style>
+		body {
+			display: flex;
+			justify-content: center;
+			margin-top: 10%;
+		}
+		.balloon {
+			border-radius: 100%;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+	<div class="balloon" id="balloon" style="background-color : red; width : 200px; height : 200px;"></div>
+	<script>
+		$(document).ready(function()
+		{
+
+			$("#balloon").bind("click", grow_balloon).bind("mouseleave", shrink_balloon);
+
+		});
+
+	function grow_balloon()
+	{
+			const current_color = $(this).css("background-color");
+			const current_w = $(this).width();
+			const current_h = $(this).height();
+
+			if (current_w < 411)
+			{
+				$(this).width( $(this).width() + 10 );
+				$(this).height( $(this).height() + 10 );
+			} else {
+				$(this).width(200).height(200);
+			}
+			if (current_color == "rgb(255, 0, 0)"){
+				$(this).css("background-color", "green");
+			}
+			else if (current_color == "rgb(0, 128, 0)")
+				$(this).css("background-color", "blue");
+			else
+				$(this).css("background-color", "red");
+		}
+
+		function shrink_balloon()
+		{
+			const current_color = $(this).css("background-color");
+			const current_w = $(this).width();
+			const current_h = $(this).height();
+
+			if (current_w > 204)
+			{
+				$(this).width($(this).width() - 5);
+				$(this).height($(this).height() - 5);
+			}
+			if (current_color == 'rgb(255, 0, 0)'){
+				$(this).css("background-color", 'blue');
+			}
+			else if (current_color == "rgb(0, 0, 255)")
+				$(this).css("background-color", "green");
+			else
+				$(this).css("background-color", "red");
+		}
+	</script>
+</body>
+</html>
