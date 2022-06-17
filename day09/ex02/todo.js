@@ -1,7 +1,11 @@
 let todoItems = [];
+allCookies = document.cookie;
+console.log(allCookies);
+
 
 function buildList()
 {
+	var str = todoItems.toString();
 	var arrayLen = todoItems.length;
 	var temp;
 	var parent = document.getElementById('ft_list');
@@ -40,7 +44,6 @@ document.querySelector('#new').addEventListener('click', function(evt)
 		text = text.trim();
 		todoItems.unshift(text);
 		var arrayLen = todoItems.length;
-		console.log(todoItems)
 		buildList()
 	}
 });
