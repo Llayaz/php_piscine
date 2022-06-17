@@ -13,15 +13,18 @@ function buildList()
 		temp.id = i;
 		temp.onclick = function ()
 		{
-			for (i = 0; i < arrayLen; i++)
+			if(confirm("Remove this item?"))
 			{
-				if(i == this.id)
-					todoItems.splice(i, 1);
-			}
-			
-			this.remove();
-			arrayLen = todoItems.length;
-			buildList();
+				for (i = 0; i < arrayLen; i++)
+				{
+					if(i == this.id)
+						todoItems.splice(i, 1);
+				}
+
+				this.remove();
+				arrayLen = todoItems.length;
+				buildList();
+			}	
 		};
 		temp.innerHTML = todoItems[i];
 		document.getElementById('ft_list').appendChild(temp);
