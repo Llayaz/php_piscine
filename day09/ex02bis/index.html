@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TO DO List</title>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Archivo&family=Raleway:wght@400;600&display=swap');
+		div.wrap {
+			display: grid;
+			width: 100vw;
+			height: 100vh;
+		}
+		div.ft_list {
+			width: 50%;
+		}
+		button {
+			padding: 10px;
+			height: 12vh;
+			margin: 4% auto;
+			background-image: linear-gradient(to bottom right, #2feaa8, #028cf3);
+			font-family: Raleway, sans-serif;
+			font-size: 2vw;
+			font-weight: bold;
+			width: 10%;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.todoItem {
+			background-color: #2feaa8;
+			color: white;
+			text-align: center;
+			padding: 1%;
+			margin: 1%;
+			font-family: Raleway, sans-serif;
+			font-size: 2vw;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<button id="new">New</button>
+		<div id="ft_list">
+			
+		</div>
+	</div>
+	<script src="todo.js"></script>
+</body>
+</html>
