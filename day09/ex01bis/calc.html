@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Archivo&family=Raleway:wght@400;600&display=swap');
+		body {
+			width: 1fr;
+			height: 1fr;
+			background-color: white;
+			display: flex;
+			justify-content: center;
+			margin-top: 20%;
+			margin-bottom: 25%;
+			font-family: Archivo, sans-serif;
+		}
+		input {
+			padding: 10px;
+			margin: 8px;
+			font-size: 20px;
+			background: rgba(255,255,255,0.5);
+			box-shadow: 0px
+		}
+		select {
+			padding: 10px;
+			font-size: 20px;
+		}
+		input[type=submit] {
+			background-image: linear-gradient(to bottom right, #2feaa8, #028cf3);
+			font-family: Raleway, sans-serif;
+			font-weight: bold;
+			width: 30%;
+			float: right;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			opacity: 100%;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+	<div>
+		<input type="text" name="" id="left_num">
+		<select id="operators">
+			<option value="add">+</option>
+			<option value="sub">-</option>
+			<option value="mult">*</option>
+			<option value="div">/</option>
+			<option value="mod">%</option>
+		</select>
+		<input type="text" name="" id="right_num">
+		<br>
+		<input type="submit" id="submit" value="Try me!">
+	</div>
+	<script>
+		$(document).ready(function() {
+			setInterval('alert("Please, use me...");', 30000);
+			$('#submit').click(function() {
+				var num1 = $('#left_num').val();
+				var num2 = $('#right_num').val();
+				var op = $('#operators').val();
+				var result;
+
+				if (/^[0-9]+$/.test(num1) && /^[0-9]+$/.test(num2))
+				{
+					if (op == 'add')
+						result = parseInt(num1) + parseInt(num2);
+					else if (op == 'sub') 
+						result = parseInt(num1) - parseInt(num2);
+					else if (op == 'mult') 
+						result = parseInt(num1) * parseInt(num2);
+					else if (op == 'div' && num2 != 0) 
+						result = parseInt(num1) / parseInt(num2);
+					else if (op == 'mod' && num2 != 0) 
+						result = parseInt(num1) % parseInt(num2);
+					else
+						result = "It's over 9000!";
+					console.log(result);
+					alert(result);
+				} else
+					alert("Error :(");
+			})
+		})
+
+	</script>
+</body>
+</html>
