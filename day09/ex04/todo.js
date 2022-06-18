@@ -94,11 +94,13 @@ function buildList()
 function addNew()
 {
 	let text = prompt("Please enter your new to-do item:", "");
-
+	
+	text = $.trim(text);
+	text = text.replace(/;/g, '');
+	text = text.replace(/ʥ/g, '');
+	
 	if (text != "")
 	{
-		text = $.trim(text);
-		text = text.replace(/;/g, '');
 		var arrayLen = todoItems.length;
 		todoItems.unshift(text);
 		arrayLen = todoItems.length;
