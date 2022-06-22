@@ -19,7 +19,7 @@
 		}
 		$matches = array();
 		$res = preg_replace('/\s+/', '', $argv[1]);
-		if (preg_match('/(-?[\d\.]+)([\+\-\*\/])(\-?[\d\.]+)/', $res, $matches) !== false)
+		if (preg_match('/(-?[\d\.]+)([\+\-\*\/\%])(\-?[\d\.]+)/', $res, $matches) !== false)
 		{
 			$operator = $matches[2];
 			switch($operator){
