@@ -1,10 +1,11 @@
 <?php
-//_GET contains the array given in url as key=value pairs separated by &
-if($_GET['action'] == "set")
-	setcookie($_GET['name'], $_GET['value']);
-if($_GET['action'] == "get")
-	echo ($_COOKIE[$_GET['name']]);
-if($_GET['action'] == "del")
-	setcookie($_GET['name'], '', 0);
-//setting expiration date to past
+	$name = $_GET['name'];
+	$value = $_GET['value'];
+
+	if($_GET['action'] == "set" && $name && $value)
+		setcookie($_GET['name'], $_GET['value']);
+	if($_GET['action'] == "get" && $_COOKIE[$name])
+			echo $_COOKIE[$_GET['name']]."\n";
+	if($_GET['action'] == "del")
+		setcookie($_GET['name'], '', time() - 3600);
 ?>
